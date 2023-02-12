@@ -5,6 +5,7 @@ import ButtonWithProgress from '../components/ButtonWithProgress';
 import { useApiProgress } from '../shared/ApiProgress';
 import { useDispatch } from 'react-redux';
 import { loginHandler, signupHandler } from '../redux/authActions';
+import { URL } from '../shared/System';
 
 const UserSignUpPage = (props) => {
 	const [form, setForm] = useState({
@@ -19,17 +20,17 @@ const UserSignUpPage = (props) => {
 	// const [rePassword, setRePassword] = useState();
 	const [agreedClicked, setAgreedClicked] = useState();
 	const [errors, setErrors] = useState({});
-const dispatch = useDispatch();
+	const dispatch = useDispatch();
 	const onChange = event => {
 		const { name, value } = event.target;
 		const errorsCopy = { ...errors };
-		errorsCopy[name] = undefined;		
-	
+		errorsCopy[name] = undefined;
+
 		setErrors(errorsCopy);
 		const formCopy = { ...form };
 		formCopy[name] = value;
 		setForm(formCopy)
-	
+
 	}
 	const onChangeAgree = event => {
 		// this.setState({ agreedClicked: event.target.checked });
@@ -66,12 +67,12 @@ const dispatch = useDispatch();
 	}
 
 	//const { agreedClicked, errors } = this.state;				
-	const { username: usernameError, email: emailError, password: passwordError} = errors;
-	const pendingAPICallSignUp = useApiProgress('https://ac37-94-54-232-254.eu.ngrok.io/api/1.0/users');
+	const { username: usernameError, email: emailError, password: passwordError } = errors;
+	const pendingAPICallSignUp = useApiProgress('post', URL + '/api/1.0/users');
 	//const pendingAPILogin = useApiProgress('https://ac37-94-54-232-254.eu.ngrok.io/api/1.0/auth');
-	 const pendingAPICall = pendingAPICallSignUp;//|| pendingAPILogin;
-	let rePasswordError ;
-	if(form.password !== form.rePassword) {
+	const pendingAPICall = pendingAPICallSignUp;//|| pendingAPILogin;
+	let rePasswordError;
+	if (form.password !== form.rePassword) {
 		rePasswordError = 'Şifreler uyuşmamakta';
 	}
 	return (

@@ -20,7 +20,7 @@ const App = () => {
             <Route path="/login" component={UserLoginPage} />
           }
           <Route path="/signup" component={UserSignUpPage} />
-          <Route path="/user/:username" component={UserPage} />
+          <Route path="/users/:username" component={UserPage} />
           <Redirect to="/" />
         </Switch>
       </HashRouter>

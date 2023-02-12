@@ -1,31 +1,60 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutSuccess } from '../redux/authActions';
+import ProfileImage from './ProfileImage';
 
 const TopBar = (props) => {
-
-	const { username, isLoggedIn } = useSelector((store) => ({
+	const { username, isLoggedIn, image } = useSelector((store) => ({
 		isLoggedIn: store.isLoggedIn,
-		username: store.username
+		username: store.username,
+		image: store.image
 	}))
+	const menuArea = useRef(null);
+	const [menuVisible, setMenuVisible] = useState(false);
 
-	const dispatch = useDispatch(); 
+	const dispatch = useDispatch();
 	const onLogoutSuccess = () => {
 		dispatch(logoutSuccess());
 	}
 
+	useEffect(() => {
+		document.addEventListener('click', menuClickTracker);
+		return () => {
+			document.removeEventListener('click', menuClickTracker);
+		}
+	},[isLoggedIn])
+
+	const menuClickTracker = event => {
+		if (menuArea === null || !menuArea.current.contains(event.target)) {
+			setMenuVisible(false);
+		}
+	}
+
 	let links = (
-		<ul className='navbar-nav'>
+		<ul className="navbar-nav">
 			<li><Link className="nav-link" to="/login">Giriş</Link></li>
 			<li><Link className="nav-link" to="/signup">Kayıt Ol</Link></li>
 		</ul>
 	);
 	if (isLoggedIn) {
+		let dropDownClass = "dropdown-menu p-0 shadow";
+		if (menuVisible) {
+			dropDownClass += ' show';
+		}
 		links = (
-			<ul className='navbar-nav'>
-				<li><Link className="nav-link" to={`/user/${username}`}>{username}</Link></li>
-				<li className="nav-link" onClick={onLogoutSuccess} style={{ cursor: 'pointer' }}>Çıkış</li>
+			<ul className="navbar-nav ml-auto" ref={menuArea}>
+				<li className="nav-item dropdown">
+					<div className="d-flex" style={{ cursor: 'pointer' }} onClick={() => setMenuVisible(true)}>
+						<li><Link className="nav-link dropdown-toggle" to={`/users/${username}`}>{username}</Link></li>
+						<li><ProfileImage image={image} width="32" height="32" className="rounded-circle m-auto" /></li>
+
+					</div>
+					<div className={dropDownClass}>
+						<li><Link className="dropdown-item" to={`/users/${username}`}>{username}</Link></li>
+						<span className="dropdown-item" onClick={onLogoutSuccess} style={{ cursor: 'pointer' }}>Çıkış</span>
+					</div>
+				</li>
 			</ul>
 		)
 	}
