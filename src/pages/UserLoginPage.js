@@ -4,9 +4,8 @@ import ButtonWithProgress from '../components/ButtonWithProgress';
 import { useApiProgress } from '../shared/ApiProgress';
 import { useDispatch } from 'react-redux';
 import { loginHandler, loginSuccess } from '../redux/authActions';
-import { URL } from '../shared/System';
-const UserLoginPage = (props) => {
 
+const UserLoginPage = (props) => {
 	const [username, setUsername] = useState();
 	const [password, setPassword] = useState();
 	const [agreedClicked, setAgreedClicked] = useState();
@@ -23,7 +22,6 @@ const UserLoginPage = (props) => {
 
 	const onClickLogin = async event => {
 		event.preventDefault();
-
 		const { history } = props;
 		const { push } = history;
 		const body = {
@@ -39,7 +37,7 @@ const UserLoginPage = (props) => {
 		}
 	}
 
-	const pendingAPICall = useApiProgress('post', URL + '/api/1.0/auth');
+	const pendingAPICall = useApiProgress('post', '/api/1.0/auth');
 	const buttonEnabled = username && password;
 	return (
 		<div className='container'>

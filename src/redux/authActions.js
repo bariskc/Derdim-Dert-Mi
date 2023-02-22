@@ -14,13 +14,25 @@ export const loginSuccess = authState => {
 	};
 }
 
+export const updateSuccess = ({ email }) => {
+	return {
+		type: ACTIONS.UPDATE_SUCCESS,
+		payload: {
+			email
+			// image
+		}
+	};
+}
+
 export const loginHandler = (credentials) => {
 	return async function (dispatch) {
 		const response = await login(credentials);
+		console.log(response);
 		const authState = {
-			...response.data,
+			...response.data.user,
 			password: credentials.password,
-			username: response.data.user.username
+			username: response.data.user.username,
+			token: response.data.token
 		}
 
 		dispatch(loginSuccess(authState));

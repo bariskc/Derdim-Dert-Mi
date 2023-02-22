@@ -1,33 +1,35 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import ProfileCard from '../components/ProfileCard';
 import { getUser } from '../api/apiCalls';
 import { useApiProgress } from '../shared/ApiProgress';
-import { URL } from '../shared/System';
 import Spinner from '../components/Spinner';
-const UserPage = (props) => {
+import EntryFeed from '../components/EntryFeed';
+
+const UserPage = () => {
 	const [user, setUser] = useState({});
 	const [notFound, setNotFound] = useState(false);
-	const { username } = props.match.params;
+	const { username } = useParams();
 
-	const pendingAPICall = useApiProgress('post' + URL + '/api/1.0/users/' + username);
+	const pendingAPICall = useApiProgress('get', '/api/1.0/users/' + username, true);
 	useEffect(() => {
-		console.log(props.match.params.username);
+		setNotFound(false);
+	}, [user]);
+
+	useEffect(() => {
+		//console.log(props.match.params.username);
 		const loadUser = async () => {
 			try {
 				const response = await getUser(username);
 				setUser(response.data)
-				//			setNotFound(false);
+				//		setNotFound(false);
 			} catch (error) {
 				//		setNotFound(true);
 			}
 		}
 		loadUser();
-	}, [username])
-	if (pendingAPICall) {
-		return (
-			<Spinner />
-		)
-	}
+	}, [username]);
+
 	if (notFound) {
 		return (
 			<div className='container'>
@@ -37,9 +39,24 @@ const UserPage = (props) => {
 			</div>
 		)
 	}
+
+	if (pendingAPICall || user.username !== username) {
+		return (
+			<Spinner />
+		)
+	}
+
 	return (
 		<div className='container'>
-			<ProfileCard user={user} />
+			<div className='row'>
+				<div className='col'>
+					<EntryFeed />
+				</div>
+				<div className='col'>
+					<ProfileCard user={user} />
+				</div>
+			</div>
+
 		</div>
 	);
 };

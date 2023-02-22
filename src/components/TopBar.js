@@ -23,10 +23,10 @@ const TopBar = (props) => {
 		return () => {
 			document.removeEventListener('click', menuClickTracker);
 		}
-	},[isLoggedIn])
+	}, [isLoggedIn])
 
 	const menuClickTracker = event => {
-		if (menuArea === null || !menuArea.current.contains(event.target)) {
+		if (menuArea.current === null || !menuArea.current.contains(event.target)) {
 			setMenuVisible(false);
 		}
 	}
@@ -46,12 +46,13 @@ const TopBar = (props) => {
 			<ul className="navbar-nav ml-auto" ref={menuArea}>
 				<li className="nav-item dropdown">
 					<div className="d-flex" style={{ cursor: 'pointer' }} onClick={() => setMenuVisible(true)}>
-						<li><Link className="nav-link dropdown-toggle" to={`/users/${username}`}>{username}</Link></li>
-						<li><ProfileImage image={image} width="32" height="32" className="rounded-circle m-auto" /></li>
-
+						{/* <Link className="nav-link dropdown-toggle" to={`/users/${username}`}>{username}</Link> */}
+						<span className="nav-link dropdown-toggle">{username}</span>
+						{/* <ProfileImage image={image} width="32" height="32" className="rounded-circle m-auto" /> */}
 					</div>
 					<div className={dropDownClass}>
-						<li><Link className="dropdown-item" to={`/users/${username}`}>{username}</Link></li>
+						<Link className="dropdown-item" to={`/users/${username}`} onClick={() => setMenuVisible(false)}>Profil</Link>
+						<Link className="dropdown-item" to={`/${username}/settings`} onClick={() => setMenuVisible(false)}>Ayarlar</Link>
 						<span className="dropdown-item" onClick={onLogoutSuccess} style={{ cursor: 'pointer' }}>Çıkış</span>
 					</div>
 				</li>

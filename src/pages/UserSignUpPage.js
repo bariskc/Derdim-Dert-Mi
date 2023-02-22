@@ -68,7 +68,7 @@ const UserSignUpPage = (props) => {
 
 	//const { agreedClicked, errors } = this.state;				
 	const { username: usernameError, email: emailError, password: passwordError } = errors;
-	const pendingAPICallSignUp = useApiProgress('post', URL + '/api/1.0/users');
+	const pendingAPICallSignUp = useApiProgress('post', '/api/1.0/users');
 	//const pendingAPILogin = useApiProgress('https://ac37-94-54-232-254.eu.ngrok.io/api/1.0/auth');
 	const pendingAPICall = pendingAPICallSignUp;//|| pendingAPILogin;
 	let rePasswordError;
