@@ -5,6 +5,7 @@ import EntrySubmit from '../components/EntrySubmit';
 
 const HomePage = () => {
     const { isLoggedIn } = useSelector(store => ({ isLoggedIn: store.isLoggedIn }));
+    console.log("home page")
     return (
         <div className='container'>
             <div className='row'>            
