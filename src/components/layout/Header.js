@@ -48,7 +48,7 @@ const Header = props => {
           Giriş Yap
         </Link>
       </li>
-      <li className="text-[#016980] bg-[#fdb668] text-[20px] rounded-[5px] px-[10px] py-[6px] font-semibold">
+      <li className="text-[#016980] bg-[#fdb668] text-[20px] rounded-[100px] px-[20px] py-[6px] font-semibold">
         <Link className="nav-link" to="/signup">
           Kayıt Ol
         </Link>

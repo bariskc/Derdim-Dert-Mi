@@ -39,8 +39,8 @@ const UserLoginPage = props => {
   const buttonEnabled = username && password;
   return (
     <div className="container mx-auto flex flex-col justify-center items-center mt-[100px]">
-      <form className="w-[400px] bg-[#fff] py-[30px] px-[20px] rounded-[5px] border-b-[4px] border-[#fdb668]">
-        <h1 className="text-center text-[#016980] font-semibold text-[30px]">
+      <form className="w-[400px] bg-[#fff] py-[30px] px-[20px] rounded-[5px]">
+        <h1 className="text-center text-[#016980] font-semibold text-[30px] mb-[20px]">
           Giriş Yap
         </h1>
         {error && <div className="alert alert-danger">{error}</div>}
@@ -62,7 +62,7 @@ const UserLoginPage = props => {
             id="exampleCheck"
             onChange={onChangeAgree}
           />
-          <label className="form-check-label" htmlFor="exampleCheck">
+          <label className="ml-2" htmlFor="exampleCheck">
             Beni hatırla
           </label>
         </div>
