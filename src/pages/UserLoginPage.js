@@ -41,18 +41,18 @@ const UserLoginPage = props => {
     <div className="container mx-auto flex flex-col justify-center items-center mt-[100px]">
       <form className="w-[400px] bg-[#fff] py-[30px] px-[20px] rounded-[5px]">
         <h1 className="text-center text-[#016980] font-semibold text-[30px] mb-[20px]">
-          Giriş Yap
+          giriş yap
         </h1>
         {error && <div className="alert alert-danger">{error}</div>}
         <Input
           name="username"
-          label="Kullanıcı Adı"
+          label="kullanıcı adı"
           onChange={event => setUsername(event.target.value)}
         />
         <Input
           type="password"
           name="password"
-          label="Şifre"
+          label="şifre"
           onChange={event => setPassword(event.target.value)}
         />
         <div className="mb-3 form-check">
@@ -63,14 +63,14 @@ const UserLoginPage = props => {
             onChange={onChangeAgree}
           />
           <label className="ml-2" htmlFor="exampleCheck">
-            Beni hatırla
+            beni hatırla
           </label>
         </div>
         <ButtonWithProgress
           onClick={onClickLogin}
           disabled={pendingAPICall || !buttonEnabled}
           pendingAPICall={pendingAPICall}
-          text={"Giriş"}
+          text={"giriş"}
           className={
             "bg-[#fdb668] w-full py-[13px] rounded-[5px] text-[#fff] font-semibold"
           }

@@ -76,18 +76,35 @@ const UserSignUpPage = (props) => {
 		rePasswordError = 'Şifreler uyuşmamakta';
 	}
 	return (
-		<div className='container'>
-			<form>
-				<h1 className='text-center'>Sign Up</h1>
-				<Input type="email" name="email" label="E-Mail Adresiniz" error={emailError} onChange={onChange} />
-				<Input name="username" label="Kullanıcı Adı" error={usernameError} onChange={onChange} />
-				<Input type="password" name="password" label="Şifre" error={passwordError} onChange={onChange} />
-				<Input type="password" name="rePassword" label="Şifre(Tekrar)" error={rePasswordError} onChange={onChange} />
+		<div className="container mx-auto flex flex-col justify-center items-center mt-[20px]">
+			<form className="w-[400px] bg-[#fff] py-[30px] px-[20px] rounded-[5px]">
+				<h1 className="text-center text-[#016980] font-semibold text-[30px] mb-[20px]">
+					kayıt ol
+				</h1>
+				<Input type="email" name="email" label="e-mail adresiniz" error={emailError} onChange={onChange} />
+				<Input name="username" label="kullanıcı adı" error={usernameError} onChange={onChange} />
+				<Input type="password" name="password" label="şifre" error={passwordError} onChange={onChange} />
+				<Input type="password" name="rePassword" label="şifre(tekrar)" error={rePasswordError} onChange={onChange} />
 				<div className="mb-3 form-check">
-					<input type="checkbox" className="form-check-input" id="agreement" onChange={onChangeAgree} />
-					<label className="form-check-label" htmlFor="agreement">Kabul ediyorum</label>
+					<input
+						type="checkbox"
+						className="form-check-input"
+						onChange={onChangeAgree}
+					/>
+					<label className="ml-2">
+						kabul ediyorum
+					</label>
 				</div>
-				<ButtonWithProgress onClick={onClickSignUp} disabled={!agreedClicked || pendingAPICall || rePasswordError !== undefined} pendingAPICall={pendingAPICall} text={'Kayıt Ol'} />
+
+				<ButtonWithProgress
+					onClick={onClickSignUp}
+					disabled={!agreedClicked || pendingAPICall || rePasswordError !== undefined}
+					pendingAPICall={pendingAPICall}
+					text={"kayıt ol"}
+					className={
+						"bg-[#fdb668] w-full py-[13px] rounded-[5px] text-[#fff] font-semibold"
+					}
+				/>
 			</form>
 		</div>
 	);
