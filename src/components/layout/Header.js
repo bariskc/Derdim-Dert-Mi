@@ -35,22 +35,22 @@ const Header = props => {
     <ul className="flex flex-row items-center">
       <li className="mr-[30px] text-[#fdb668] text-[20px]">
         <Link className="nav-link" to="/login">
-          Ana Sayfa
+          anasayfa
         </Link>
       </li>
       <li className="mr-[30px] text-[#fdb668] text-[20px]">
         <Link className="nav-link" to="/login">
-          Nedir ?
+          nedir?
         </Link>
       </li>
       <li className="mr-[30px] text-[#fdb668] text-[20px]">
         <Link className="nav-link" to="/login">
-          Giriş Yap
+          giriş yap
         </Link>
       </li>
       <li className="text-[#016980] bg-[#fdb668] text-[20px] rounded-[100px] px-[20px] py-[6px] font-semibold">
         <Link className="nav-link" to="/signup">
-          Kayıt Ol
+          kayıt ol
         </Link>
       </li>
     </ul>
@@ -62,41 +62,47 @@ const Header = props => {
       dropDownClass += " show";
     }
     links = (
-      <ul className="navbar-nav ml-auto" ref={menuArea}>
-        <li className="nav-item dropdown">
-          <div
+      // <ul className="navbar-nav ml-auto" ref={menuArea}>
+      <ul className="flex flex-row items-center">
+        <li className="mr-[30px] text-[#fdb668] text-[20px]">
+          {/* <div
             className="d-flex"
             style={{ cursor: "pointer" }}
             onClick={() => setMenuVisible(true)}
-          >
-            {/* <Link className="nav-link dropdown-toggle" to={`/users/${username}`}>{username}</Link> */}
-            <span className="nav-link dropdown-toggle">{username}</span>
-            {/* <ProfileImage image={image} width="32" height="32" className="rounded-circle m-auto" /> */}
-          </div>
-          <div className={dropDownClass}>
+          > */}
+          {/* <Link className="nav-link dropdown-toggle" to={`/users/${username}`}>{username}</Link> */}
+          {/* <span className="nav-link dropdown-toggle">{username}</span> */}
+          {/* <ProfileImage image={image} width="32" height="32" className="rounded-circle m-auto" /> */}
+          {/* </div> */}
+          {/* <div className={dropDownClass}> */}
+
             <Link
-              className="dropdown-item"
+              className="nav-link"
               to={`/users/${username}`}
               onClick={() => setMenuVisible(false)}
             >
-              Profil
+              profil
             </Link>
+          </li>
+          <li className="mr-[30px] text-[#fdb668] text-[20px]">
             <Link
-              className="dropdown-item"
+              className="nav-link"
               to={`/${username}/settings`}
               onClick={() => setMenuVisible(false)}
             >
-              Ayarlar
+              ayarlar
             </Link>
+          </li>
+          <li className="mr-[30px] text-[#fdb668] text-[20px]">
             <span
-              className="dropdown-item"
+              className="nav-link"
               onClick={onLogoutSuccess}
               style={{ cursor: "pointer" }}
             >
-              Çıkış
+              çıkış
             </span>
-          </div>
-        </li>
+          </li>
+          {/* </div> */}        
       </ul>
     );
   }
